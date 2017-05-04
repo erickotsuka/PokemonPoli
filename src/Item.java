@@ -1,11 +1,15 @@
 
 public class Item {
 	private double cura;
-	private static final int prioridade = 5;
+	private String nome;
+	public Item(String nome, double cura) {
+		this.nome = nome;
+		this.cura = cura;
+	}
 	public double getCura() {
 		return this.cura;
 	}
-	public int getPrioridade() {
-		return this.prioridade;
+	public String getNome() {
+		return this.nome;
 	}
 }

@@ -8,4 +8,10 @@ public class Ataque {
 		this.dano = dano;
 		this.prioridade = prioridade; //ataque de prioridade 5 ataca antes do que o de 4
 	}
+	public double getDano () {
+		return dano;
+	}
+	public int getPrioridade () {
+		return prioridade;
+	}
 }
