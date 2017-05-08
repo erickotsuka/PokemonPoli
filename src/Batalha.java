@@ -95,12 +95,12 @@ public class Batalha extends Controlador {
 			pokes_t1[3] = new Pokemon("Altaria", 354, "Dragon", 354);
 			pokes_t1[4] = new Pokemon("Mega Mewtwo X", 416, "Psychic", 416);
 			pokes_t1[5] = new Pokemon("Forretress", 354, "Bug", 354);
-			pokes_t2[0] = new Pokemon("NOME", 130, "TIPO", 130);
-			pokes_t2[1] = new Pokemon("NOME", 130, "TIPO", 130);
-			pokes_t2[2] = new Pokemon("NOME", 130, "TIPO", 130);
-			pokes_t2[3] = new Pokemon("NOME", 130, "TIPO", 130);
-			pokes_t2[4] = new Pokemon("NOME", 130, "TIPO", 130);
-			pokes_t2[5] = new Pokemon("NOME", 130, "TIPO", 130);
+			pokes_t2[0] = new Pokemon("Pikachu", 274, "Electric", 274);
+			pokes_t2[1] = new Pokemon("Venusaur", 364, "Grass", 364);
+			pokes_t2[2] = new Pokemon("Charizard", 360, "Fire", 360);
+			pokes_t2[3] = new Pokemon("Blastoise", 362, "Water", 362);
+			pokes_t2[4] = new Pokemon("Lapras", 464, "Water", 464);
+			pokes_t2[5] = new Pokemon("Snorlax", 524, "Normal", 524);
 			Ataque att = new Ataque("Pound", 40, 1);
 			pokes_t1[0].setAtaque(att, 0);
 			att = new Ataque("Take Down", 90, 2);
@@ -149,53 +149,53 @@ public class Batalha extends Controlador {
 			pokes_t1[5].setAtaque(att, 2);
 			att = new Ataque("Hyper Beam", 150, 4);
 			pokes_t1[5].setAtaque(att, 3);
-			att = new Ataque("Mega Kick", 120, 1);
+			att = new Ataque("Volt Tackle", 120, 1); //Pikachu
 			pokes_t2[0].setAtaque(att, 0);
-			att = new Ataque("Jump Kick", 100, 2);
+			att = new Ataque("Iron Tail", 100, 2);
 			pokes_t2[0].setAtaque(att, 1);
-			att = new Ataque("Rolling Kick", 60, 3);
+			att = new Ataque("Quick Attack", 40, 3);
 			pokes_t2[0].setAtaque(att, 2);
-			att = new Ataque("Sand Attack", 0, 4);
+			att = new Ataque("Thunderbolt", 90, 4);
 			pokes_t2[0].setAtaque(att, 3);
-			att = new Ataque("Headbutt", 70, 1);
+			Ataque att = new Ataque("Sludge Bomb", 90, 1); //Venusaur
 			pokes_t2[1].setAtaque(att, 0);
-			att = new Ataque("Horn Attack", 65, 2);
+			att = new Ataque("Giga Drain", 75, 2);
 			pokes_t2[1].setAtaque(att, 1);
-			att = new Ataque("Fury Attack", 15, 3);
+			att = new Ataque("Sleep Powder", 0, 3);
 			pokes_t2[1].setAtaque(att, 2);
-			att = new Ataque("Horn Drill", 100000, 4);
+			att = new Ataque("Frenzy Plant", 150, 4);
 			pokes_t2[1].setAtaque(att, 3);
-			att = new Ataque("Tackle", 40, 1);
+			Ataque att = new Ataque("Flare Blitz", 120, 1); //Charizard
 			pokes_t2[2].setAtaque(att, 0);
-			att = new Ataque("Body Slam", 85, 2);
+			att = new Ataque("Air Slash", 75, 2);
 			pokes_t2[2].setAtaque(att, 1);
-			att = new Ataque("Wrap", 15, 3);
+			att = new Ataque("Blast Burn", 150, 3);
 			pokes_t2[2].setAtaque(att, 2);
-			att = new Ataque("Take Down", 90, 4);
+			att = new Ataque("Dragon Pulse", 85, 4);
 			pokes_t2[2].setAtaque(att, 3);
-			att = new Ataque("Thrash", 120, 1);
+			Ataque att = new Ataque("Focus Blast", 120, 1); //Blastoise
 			pokes_t2[3].setAtaque(att, 0);
-			att = new Ataque("Double-Edge", 120, 2);
+			att = new Ataque("Hydro Cannon", 150, 2);
 			pokes_t2[3].setAtaque(att, 1);
-			att = new Ataque("Tail Whip", 0, 3);
+			att = new Ataque("Blizzard", 110, 3);
 			pokes_t2[3].setAtaque(att, 2);
-			att = new Ataque("Poison Sting", 15, 4);
+			att = new Ataque("Flash Cannon", 80, 4);
 			pokes_t2[3].setAtaque(att, 3);
-			att = new Ataque("Twineedle", 25, 1);
+			Ataque att = new Ataque("Blizzard", 110, 1); //Lapras
 			pokes_t2[4].setAtaque(att, 0);
-			att = new Ataque("Pin Missile", 25, 2);
+			att = new Ataque("Brine", 65, 2);
 			pokes_t2[4].setAtaque(att, 1);
-			att = new Ataque("Leer", 0, 3);
+			att = new Ataque("Psychic", 90, 3);
 			pokes_t2[4].setAtaque(att, 2);
-			att = new Ataque("Bite", 60, 4);
+			att = new Ataque("Body Slam", 85, 4);
 			pokes_t2[4].setAtaque(att, 3);
-			att = new Ataque("Growl", 0, 1);
+			Ataque att = new Ataque("Shadow Ball", 80, 1); //Snorlax
 			pokes_t2[5].setAtaque(att, 0);
-			att = new Ataque("Roar", 0, 2);
+			att = new Ataque("Crunch", 80, 2);
 			pokes_t2[5].setAtaque(att, 1);
-			att = new Ataque("Sing", 0, 3);
+			att = new Ataque("Blizzard", 110, 3);
 			pokes_t2[5].setAtaque(att, 2);
-			att = new Ataque("Supersonic", 0, 4);
+			att = new Ataque("Giga Impact", 150, 4);
 			pokes_t2[5].setAtaque(att, 3);
 		}
 		//TODO prioridades, verificar pokemons vivos, se finalizou batalha
