@@ -88,7 +88,7 @@ public class Batalha extends Controlador {
 		private Trainer treinador_2 = new Trainer("Helio");
 		private Pokemon[] pokes_t1 = new Pokemon[6];
 		private Pokemon[] pokes_t2 = new Pokemon[6];
-		{
+		public Iniciar() {
 			pokes_t1[0] = new Pokemon("Blissey", 714, "Normal", 714);
 			pokes_t1[1] = new Pokemon("Aegislash", 324, "Steel", 324);
 			pokes_t1[2] = new Pokemon("Kyogre", 404, "Water", 404);
@@ -157,7 +157,7 @@ public class Batalha extends Controlador {
 			pokes_t2[0].setAtaque(att, 2);
 			att = new Ataque("Thunderbolt", 90, 4);
 			pokes_t2[0].setAtaque(att, 3);
-			Ataque att = new Ataque("Sludge Bomb", 90, 1); //Venusaur
+			att = new Ataque("Sludge Bomb", 90, 1); //Venusaur
 			pokes_t2[1].setAtaque(att, 0);
 			att = new Ataque("Giga Drain", 75, 2);
 			pokes_t2[1].setAtaque(att, 1);
@@ -165,7 +165,7 @@ public class Batalha extends Controlador {
 			pokes_t2[1].setAtaque(att, 2);
 			att = new Ataque("Frenzy Plant", 150, 4);
 			pokes_t2[1].setAtaque(att, 3);
-			Ataque att = new Ataque("Flare Blitz", 120, 1); //Charizard
+			att = new Ataque("Flare Blitz", 120, 1); //Charizard
 			pokes_t2[2].setAtaque(att, 0);
 			att = new Ataque("Air Slash", 75, 2);
 			pokes_t2[2].setAtaque(att, 1);
@@ -173,7 +173,7 @@ public class Batalha extends Controlador {
 			pokes_t2[2].setAtaque(att, 2);
 			att = new Ataque("Dragon Pulse", 85, 4);
 			pokes_t2[2].setAtaque(att, 3);
-			Ataque att = new Ataque("Focus Blast", 120, 1); //Blastoise
+			att = new Ataque("Focus Blast", 120, 1); //Blastoise
 			pokes_t2[3].setAtaque(att, 0);
 			att = new Ataque("Hydro Cannon", 150, 2);
 			pokes_t2[3].setAtaque(att, 1);
@@ -181,7 +181,7 @@ public class Batalha extends Controlador {
 			pokes_t2[3].setAtaque(att, 2);
 			att = new Ataque("Flash Cannon", 80, 4);
 			pokes_t2[3].setAtaque(att, 3);
-			Ataque att = new Ataque("Blizzard", 110, 1); //Lapras
+			att = new Ataque("Blizzard", 110, 1); //Lapras
 			pokes_t2[4].setAtaque(att, 0);
 			att = new Ataque("Brine", 65, 2);
 			pokes_t2[4].setAtaque(att, 1);
@@ -189,7 +189,7 @@ public class Batalha extends Controlador {
 			pokes_t2[4].setAtaque(att, 2);
 			att = new Ataque("Body Slam", 85, 4);
 			pokes_t2[4].setAtaque(att, 3);
-			Ataque att = new Ataque("Shadow Ball", 80, 1); //Snorlax
+			att = new Ataque("Shadow Ball", 80, 1); //Snorlax
 			pokes_t2[5].setAtaque(att, 0);
 			att = new Ataque("Crunch", 80, 2);
 			pokes_t2[5].setAtaque(att, 1);
@@ -197,8 +197,21 @@ public class Batalha extends Controlador {
 			pokes_t2[5].setAtaque(att, 2);
 			att = new Ataque("Giga Impact", 150, 4);
 			pokes_t2[5].setAtaque(att, 3);
+			for (int i = 0; i < 6; i++)
+				treinador_1.setPokemon(pokes_t1[i], i);
+			for (int i = 0; i < 6; i++)
+				treinador_2.setPokemon(pokes_t2[i], i);
+			treinador_1.getPokemon(0).ativar();
+			treinador_2.getPokemon(0).ativar();	
 		}
 		//TODO prioridades, verificar pokemons vivos, se finalizou batalha
+		public boolean nenhum_vivo(Trainer treinador) {
+			for (int i = 0; i < 6; i++) {
+				if (treinador.getPokemon(i).getHP() >= 0)
+					return false;
+			}
+			return true;
+		}
 		public void acao () {
 			//TODO adicionar eventos
 		}
