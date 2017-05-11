@@ -1,3 +1,4 @@
+
 class ConjuntoEventos {
 	private static final int MAX_EVENTOS = 100;
 	private Evento[] eventos = new Evento[MAX_EVENTOS];
@@ -23,17 +24,81 @@ class ConjuntoEventos {
 	public void removeAtual() {
 		eventos[proximo] = null;
 	}
+	public int getIndice () {
+		return indice;
+	}
+	public Evento[] getEnd() {
+		return eventos;
+	}
+	public void checkPrioridade () {
+		System.out.println(eventos[5].getPrioridade());
+		Evento temp;
+		if (eventos[proximo + 1].getPrioridade() > eventos[proximo + 2].getPrioridade()) {
+		}
+		if (eventos[proximo + 1].getPrioridade() < eventos[proximo + 2].getPrioridade()) {
+			temp = eventos[proximo + 1];
+			eventos[proximo + 1] = eventos[proximo + 2];
+			eventos[proximo + 2] = temp;
+		}
+		if (eventos[proximo + 1].getPrioridade() == 4 && eventos[proximo + 2].getPrioridade() == 4) { //os dois sao ataques
+			if (eventos[proximo + 1].getAtacante().getPokemon(0).getAtaque(eventos[proximo + 1].getA()).getPrioridade() < eventos[proximo + 2].getAtacante().getPokemon(0).getAtaque(eventos[proximo + 2].getA()).getPrioridade()) {
+				temp = eventos[proximo + 1];
+				eventos[proximo + 1] = eventos[proximo + 2];
+				eventos[proximo + 2] = temp;
+			}
+		}
+	}
 }
 
 public class Controlador {
+	private boolean finalizou = false;
 	private ConjuntoEventos ce = new ConjuntoEventos();
 	public void adicionarEvento(Evento c) {ce.add(c); }
-	public void executar() {
+	public boolean nenhum_vivo(Trainer treinador) {
+		for (int i = 0; i < 6; i++) {
+			if (treinador.getPokemon(i).getHP() > 0)
+				return false;
+		}
+		finalizou = true;
+		return true;
+	}
+	public void trocaPokemon (Trainer treinador) {
+		Pokemon temp;
+		if (treinador.getPokemon(0).getHP() <= 0) {
+			for (int i = 1; i < 6; i++) {
+				if (treinador.getPokemon(i).getHP() > 0) {
+					temp = treinador.getPokemon(0);
+					treinador.setPokemon(treinador.getPokemon(i), 0);
+					treinador.setPokemon(temp, i);
+				}
+			}
+		}
+	}
+	public boolean finalizou () {
+		return finalizou;
+	}
+	public void executar(Trainer treinador_1, Trainer treinador_2) {
+		int i = 0;
 		Evento e;
 		while((e = ce.pegaProximo()) != null) {
-			e.acao();
-			System.out.println(e.descricao());
-			ce.removeAtual();
+			if (!finalizou) {
+				e.acao();
+				System.out.println(e.descricao());
+				ce.removeAtual();
+				trocaPokemon(treinador_1);
+				trocaPokemon(treinador_2);
+				if (nenhum_vivo(treinador_1)) {
+					System.out.println ("Vitoria do treinador " + treinador_2.getNome());
+				}
+				if (nenhum_vivo(treinador_2)) {
+					System.out.println ("Vitoria do treinador " + treinador_1.getNome());
+				}
+			} else {
+				break;
+			}
+			if (++i % 2 != 0) {
+				ce.checkPrioridade ();
+			}
 		}
 	}
 }

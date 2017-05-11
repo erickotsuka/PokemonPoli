@@ -14,4 +14,7 @@ public class Ataque {
 	public int getPrioridade () {
 		return prioridade;
 	}
+	public String getNome() {
+		return nome;
+	}
 }
