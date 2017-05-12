@@ -1,5 +1,6 @@
 
 public class Trainer {
+	private boolean finalizou = false;
 	private static final int tam = 6;
 	private Pokemon[] pok = new Pokemon[tam];
 	private String nome;
@@ -20,5 +21,14 @@ public class Trainer {
 	}
 	public String getNome () {
 		return nome;
+	}
+	public void finalizouFalse () {
+		finalizou = false;
+	}
+	public void finalizouTrue () {
+		finalizou = true;
+	}
+	public boolean getFinalizou () {
+		return finalizou;
 	}
 } 

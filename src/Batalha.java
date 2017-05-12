@@ -1,6 +1,5 @@
 
 public class Batalha extends Controlador {
-	private boolean finalizou = false;
 	private class Atacar extends Evento {
 		private Trainer atacante, defesa;
 		private int a;
@@ -23,7 +22,7 @@ public class Batalha extends Controlador {
 			return a;
 		}
 		public void acao() {
-			defesa.getPokemon(0).calcHP (atacante.getPokemon(0).getAtaque(a).getDano());
+			defesa.getPokemon(0).calcHP (atacante.getPokemon(0).getAtaque(a).getDano(), atacante.getPokemon(0).getTipo());
 		}
 		public String descricao () {
 			String msg;
@@ -68,11 +67,12 @@ public class Batalha extends Controlador {
 		private Trainer ativo;
 		private Item item;
 		private static final int prioridade = 5;
-		public UsarItem(Trainer ativo) {
+		public UsarItem(Trainer ativo, Item item) {
 			this.ativo = ativo;
+			this.item = item;
 		}
 		public void acao () {
-			ativo.getPokemon(0).calcHP(item.getCura());
+			ativo.getPokemon(0).calcHP(item.getCura(), "Item");
 		}
 		public String descricao () {
 			String msg;
@@ -103,7 +103,7 @@ public class Batalha extends Controlador {
 			this.ativo = ativo;
 		}
 		public void acao () {
-			finalizou = true;
+			ativo.finalizouTrue();
 		}
 		public String descricao () {
 			return ativo.getNome() + " fugiu da batalha.";
@@ -128,11 +128,13 @@ public class Batalha extends Controlador {
 		private Trainer treinador_2;
 		private Pokemon[] pokes_t1;
 		private Pokemon[] pokes_t2;
-		public Iniciar(Trainer treinador_1, Trainer treinador_2, Pokemon[] pokes_t1, Pokemon[] pokes_t2) {
+		private Item item;
+		public Iniciar(Trainer treinador_1, Trainer treinador_2, Pokemon[] pokes_t1, Pokemon[] pokes_t2, Item item) {
 			this.treinador_1 = treinador_1;
 			this.treinador_2 = treinador_2;
 			this.pokes_t1 = pokes_t1;
 			this.pokes_t2 = pokes_t2;
+			this.item = item;
 		}
 		public void acao () {
 			//TODO adicionar eventos
@@ -140,10 +142,97 @@ public class Batalha extends Controlador {
 				adicionarEvento(new Atacar(treinador_2, treinador_1, 0));
 				adicionarEvento (new Atacar(treinador_1, treinador_2, 0));
 				adicionarEvento(new Atacar(treinador_2, treinador_1, 2));
-				adicionarEvento (new UsarItem(treinador_1));
+				adicionarEvento (new UsarItem(treinador_1, item));
 				adicionarEvento(new Atacar(treinador_2, treinador_1, 3));
 				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
-				adicionarEvento (new UsarItem(treinador_2));
+				adicionarEvento (new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new Atacar(treinador_2, treinador_1, 3));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 0));
+				adicionarEvento(new Atacar(treinador_2, treinador_1, 2));
+				//adicionarEvento(new Fugir (treinador_1));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				adicionarEvento(new Atacar(treinador_1, treinador_2, 3));
+				adicionarEvento(new UsarItem(treinador_2, item));
+				
+				
 		}
 		public String descricao () {
 			return "Iniciando batalha\n";
@@ -170,6 +259,7 @@ public class Batalha extends Controlador {
 		}
 	}
 	public static void main(String[] args) {
+		Item potion = new Item("Potion", -50);
 		Trainer treinador_1 = new Trainer("Erick");
 		Trainer treinador_2 = new Trainer("Helio");
 		Pokemon[] pokes_t1 = new Pokemon[6];
@@ -289,7 +379,7 @@ public class Batalha extends Controlador {
 		treinador_1.getPokemon(0).ativar();
 		treinador_2.getPokemon(0).ativar();
 		Batalha b = new Batalha();
-		b.adicionarEvento(b.new Iniciar(treinador_1, treinador_2, pokes_t1, pokes_t2));
-		b.executar(treinador_1, treinador_2);
+		b.adicionarEvento(b.new Iniciar(treinador_1, treinador_2, pokes_t1, pokes_t2, potion));
+		b.executar(treinador_1, treinador_2, potion);
 	}
 }

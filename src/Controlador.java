@@ -31,7 +31,6 @@ class ConjuntoEventos {
 		return eventos;
 	}
 	public void checkPrioridade () {
-		System.out.println(eventos[5].getPrioridade());
 		Evento temp;
 		if (eventos[proximo + 1].getPrioridade() > eventos[proximo + 2].getPrioridade()) {
 		}
@@ -51,7 +50,7 @@ class ConjuntoEventos {
 }
 
 public class Controlador {
-	private boolean finalizou = false;
+	private static boolean finalizou = false;
 	private ConjuntoEventos ce = new ConjuntoEventos();
 	public void adicionarEvento(Evento c) {ce.add(c); }
 	public boolean nenhum_vivo(Trainer treinador) {
@@ -62,7 +61,7 @@ public class Controlador {
 		finalizou = true;
 		return true;
 	}
-	public void trocaPokemon (Trainer treinador) {
+	public void trocaPokemon (Trainer treinador) { //troca o pokemon caso o atual morra (o substituto executa a acao que o falecido executaria)
 		Pokemon temp;
 		if (treinador.getPokemon(0).getHP() <= 0) {
 			for (int i = 1; i < 6; i++) {
@@ -70,6 +69,7 @@ public class Controlador {
 					temp = treinador.getPokemon(0);
 					treinador.setPokemon(treinador.getPokemon(i), 0);
 					treinador.setPokemon(temp, i);
+					break;
 				}
 			}
 		}
@@ -77,11 +77,16 @@ public class Controlador {
 	public boolean finalizou () {
 		return finalizou;
 	}
-	public void executar(Trainer treinador_1, Trainer treinador_2) {
+	public void executar(Trainer treinador_1, Trainer treinador_2, Item potion) {
 		int i = 0;
 		Evento e;
 		while((e = ce.pegaProximo()) != null) {
 			if (!finalizou) {
+				if (treinador_1.getFinalizou() || treinador_2.getFinalizou()) {
+					treinador_1.finalizouFalse();
+					treinador_2.finalizouFalse();
+					break;
+				}
 				e.acao();
 				System.out.println(e.descricao());
 				ce.removeAtual();
@@ -96,7 +101,7 @@ public class Controlador {
 			} else {
 				break;
 			}
-			if (++i % 2 != 0) {
+			if (++i % 2 != 0 && !finalizou) {
 				ce.checkPrioridade ();
 			}
 		}
