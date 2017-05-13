@@ -1,4 +1,4 @@
-package exercicio_2;
+package Ex01;
 
 public class Batalha extends Controlador {
 	private class Atacar extends Evento {
@@ -384,3 +384,4 @@ public class Batalha extends Controlador {
 		b.executar(treinador_1, treinador_2, potion);
 	}
 }
+

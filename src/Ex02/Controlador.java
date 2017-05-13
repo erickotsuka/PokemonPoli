@@ -1,7 +1,7 @@
-package exercicio_2;
+package Ex02;
 
 class ConjuntoEventos {
-	private static final int MAX_EVENTOS = 100;
+	private static final int MAX_EVENTOS = 1000; //aumentei para 1000 pois percebi que com 100, o vetor acabava chegando no seu limite e no codigo padrao fornecido ele nao loopava devolta para o inicio do vetor...
 	private Evento[] eventos = new Evento[MAX_EVENTOS];
 	private int indice = 0;
 	private int proximo = 0;
@@ -48,6 +48,12 @@ class ConjuntoEventos {
 			}
 		}
 	}
+	public boolean vetnulo() { //verifica se o vetor eventos esta vazio
+		for (int i = 0; i < 99; i++) {
+			if (eventos[i] != null) return false;
+		}
+		return true;
+	}
 }
 
 public class Controlador {
@@ -78,31 +84,50 @@ public class Controlador {
 	public boolean finalizou () {
 		return finalizou;
 	}
+	public void recomecar() {
+		finalizou = false;
+	}
 	public void executar(Trainer treinador_1, Trainer treinador_2, Item potion) {
 		int i = 0;
 		Evento e;
+		recomecar();
 		while((e = ce.pegaProximo()) != null) {
 			if (!finalizou) {
-				if (treinador_1.getFinalizou() || treinador_2.getFinalizou()) {
+				if (treinador_1.getFinalizou() || treinador_2.getFinalizou()) { //verifica se algum dos treinadores fugiu da batalha
 					treinador_1.finalizouFalse();
 					treinador_2.finalizouFalse();
-					break;
+					while ((e = ce.pegaProximo()) != null) { //zera os comandos de ataque que deveriam ser realizados caso a batalha nao tivesse acabado
+						ce.removeAtual();
+					}
+					return;
 				}
 				e.acao();
 				System.out.println(e.descricao());
 				ce.removeAtual();
 				trocaPokemon(treinador_1);
 				trocaPokemon(treinador_2);
+				if(nenhum_vivo(treinador_1) && nenhum_vivo(treinador_2)) {
+					System.out.println("A batalha empatou!");
+					return;
+				}
 				if (nenhum_vivo(treinador_1)) {
-					System.out.println ("Vitoria do treinador " + treinador_2.getNome());
+					System.out.println ("Vitoria do treinador " + treinador_2.getNome() + "\n");
+					while ((e = ce.pegaProximo()) != null) { //zera os comandos de ataque que deveriam ser realizados caso a batalha nao tivesse acabado
+						ce.removeAtual();
+					}
+					return;
 				}
 				if (nenhum_vivo(treinador_2)) {
-					System.out.println ("Vitoria do treinador " + treinador_1.getNome());
+					System.out.println ("Vitoria do treinador " + treinador_1.getNome() + "\n");
+					while ((e = ce.pegaProximo()) != null) { //zera os comandos de ataque que deveriam ser realizados caso a batalha nao tivesse acabado
+						ce.removeAtual();
+					}
+					return;
 				}
 			} else {
 				break;
 			}
-			if (++i % 2 != 0 && !finalizou) {
+			if (++i % 2 != 0 && !finalizou && !ce.vetnulo()) {
 				ce.checkPrioridade ();
 			}
 		}

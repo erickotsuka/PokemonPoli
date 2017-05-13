@@ -1,4 +1,4 @@
-package exercicio_2;
+package Ex01;
 
 abstract public class Evento {
 	abstract public void acao();

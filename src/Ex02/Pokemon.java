@@ -1,5 +1,4 @@
-package exercicio_2;
-
+package Ex02;
 
 public class Pokemon {
 	private static final int tam = 4;

@@ -1,4 +1,4 @@
-package exercicio_2;
+package Ex01;
 
 public class Item {
 	private double cura;

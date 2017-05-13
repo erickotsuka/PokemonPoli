@@ -1,5 +1,4 @@
-package exercicio_2;
-
+package Ex01;
 
 public class Trainer {
 	private boolean finalizou = false;
@@ -34,3 +33,4 @@ public class Trainer {
 		return finalizou;
 	}
 } 
+

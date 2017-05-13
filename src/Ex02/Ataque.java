@@ -1,4 +1,4 @@
-package exercicio_2;
+package Ex02;
 
 public class Ataque {
 	private String nome;
